@@ -1,10 +1,10 @@
-#include "task.h"
+#include "Task.h"
 
 void Task::set_description(std::string text) {
     description = text;
 }
 
-void Task::set_state(state state) {
+void Task::set_state(State state) {
     task_state = state;
 }
 
@@ -16,7 +16,7 @@ std::string Task::get_description() {
     return description;
 }
 
-state Task::get_state() {
+State Task::get_state() {
     return task_state;
 }
 

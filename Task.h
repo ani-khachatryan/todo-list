@@ -1,17 +1,17 @@
 #include <string>
-#include "state.h"
+#include "State.h"
 
 class Task {
-	public:
-		void set_description(std::string);
-		void set_state(state state);
-		std::string get_date();
-		std::string get_description();
-		state get_state();
-        int get_id();
 	private:
 		std::string date;
 		std::string description;
-		state task_state;
+		State task_state;
         int id;
+	public:
+		void set_description(std::string);
+		void set_state(State state);
+		std::string get_date();
+		std::string get_description();
+		State get_state();
+        int get_id();
 };

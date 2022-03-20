@@ -1,5 +1,5 @@
-enum state {
-    complited,
-    open,
-    expired
+enum State {
+    Complited,
+    Open,
+    Expired
 };
