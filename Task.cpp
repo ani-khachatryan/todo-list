@@ -15,7 +15,11 @@ std::string Task::get_date() {
 std::string Task::get_description() {
     return description;
 }
-		
+
 state Task::get_state() {
     return task_state;
+}
+
+int Task::get_id() {
+    return id;
 }

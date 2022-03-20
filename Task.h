@@ -8,8 +8,10 @@ class Task {
 		std::string get_date();
 		std::string get_description();
 		state get_state();
+        int get_id();
 	private:
 		std::string date;
 		std::string description;
 		state task_state;
+        int id;
 };
