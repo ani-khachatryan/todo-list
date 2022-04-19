@@ -1,17 +1,21 @@
 @startuml
-!theme metal
 skinparam class {
-BackgroundColor #C1E1C1
+BackgroundColor PaleGreen
 ArrowColor SeaGreen
-BorderColor Black
+BorderColor SpringGreen
 }
 skinparam stereotypeCBackgroundColor YellowGreen
 
-class RequestHandler <<static>> {
+component Database(server){
+}
+
+class RequestHandler <<static(server)>> {
     //processes sql queries
 }
 
-class Reminder <<static>> {
+class Reminder <<static(server)>> {
+    //telegram bot
+    - get_todays_tasks(user_id)
     + send_notification()
 }
 
@@ -55,9 +59,9 @@ class Task {
     + int get_id();
 }
 enum State {
-    Complited
-    Open
-    Expired
+    complited
+    open
+    expired
 }
 
 class User {
