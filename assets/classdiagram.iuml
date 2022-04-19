@@ -1,0 +1,91 @@
+@startuml
+!theme metal
+skinparam class {
+BackgroundColor #C1E1C1
+ArrowColor SeaGreen
+BorderColor Black
+}
+skinparam stereotypeCBackgroundColor YellowGreen
+
+class RequestHandler <<static>> {
+    //processes sql queries
+}
+
+class Reminder <<static>> {
+    + send_notification()
+}
+
+class TaskManager <<static>> {
+    + OP_ADD(task_id)
+
+    + OP_DELETE(task_id)
+
+    + OP_GETTASKS(date)
+}
+
+class Authenticator <<static>> {
+    + OP_LOGIN
+
+    + OP_NEWUSER
+}
+
+class Register <<static>> {
+    - login
+    - password
+    - telegram
+
+    + bool complete_registration()
+}
+
+class Login <<static>> {
+    - login
+    - password
+}
+
+class Task {
+    - id : int
+    - date : string
+    - description : string
+    - state : State
+    + set_description(string);
+    + set_state(State state)
+    + get_date()
+    + std::string get_description()
+    + state get_state();
+    + int get_id();
+}
+enum State {
+    Complited
+    Open
+    Expired
+}
+
+class User {
+    - name
+    - username
+    - telegram
+    + add_task()
+    + delete_task()
+    + edit_task()
+}
+
+abstract class TaskList {
+    + display()
+}
+
+class TasksForToday {
+    - get_current_date()
+}
+RequestHandler -- Reminder
+
+RequestHandler -- Authenticator
+Authenticator -- Register
+Authenticator -- Login
+
+RequestHandler -- TaskManager
+TaskManager -- TaskList
+TaskList <|-- TasksForToday
+TaskManager -- Task
+Task -- State
+TaskManager -- User
+@enduml
