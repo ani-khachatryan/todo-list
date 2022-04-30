@@ -1,14 +1,14 @@
-import socket 
+import socket
+from database import RequestHandler
 import threading
 import requests
 
 HEADER = 64
 PORT = 5050
-#s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-#s.connect(("8.8.8.8", 80))
-#SERVER = s.getsockname()[0]
-#s.close()
-SERVER = requests.get('https://api.ipify.org').text
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+s.connect(("8.8.8.8", 80))
+SERVER = s.getsockname()[0]
+s.close()
 ADDR = (SERVER, PORT)
 FORMAT = 'utf-8'
 DISCONNECT_MESSAGE = "exit"
@@ -27,9 +27,11 @@ def handle_client(conn, addr):
             msg = conn.recv(msg_length).decode(FORMAT)
             if msg == DISCONNECT_MESSAGE:
                 connected = False
-
-            print(f"[{addr}] {msg}")
-            conn.send("Msg received".encode(FORMAT))
+            else:
+                print(f"[{addr}] {msg}")
+                result  = RequestHandler(msg)
+                for row in result:
+                    conn.send(row.encode(FORMAT))
 
     conn.close()
         
