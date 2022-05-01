@@ -37,20 +37,20 @@ def RequestHandler(req):
     elif req[0] == "TASK_DELETE":
         '''req[1] task_id'''
         delete_task = '''DELETE from tasks WHERE "task_id" = ?'''
-        cursor.execute(delete_task, req[1])
+        cursor.execute(delete_task, (req[1], ))
         connection.commit()
         # TODO update tasks in clients page
         return ["Deleted task"]
     elif req[0] == "OP_LOGIN":
         '''req[1] username, req[2] password'''
         get_user = '''SELECT * from users WHERE "username" = ?'''
-        usr = list(cursor.execute(get_user, req[1]))
-        if usr.empty():
+        usr = [cursor.execute(get_user, (req[1], ))]
+        if len(usr) == 0:
             return ["Error: wrong username"]
-        if usr.password != req[2]: #(aka password)
+        elif usr[3] != req[2]: #(aka password)
             return ["Error: wrong password"]
         else:
-            return [usr]
+            return usr
     elif req[0] == "OP_NEWUSER":
         try:
             insert_query = '''INSERT INTO users

@@ -10,7 +10,7 @@ curs.execute('''
             [name] TEXT,
             [username] TEXT NOT NULL UNIQUE,
             [password] TEXT NOT NULL,
-            [telegram_id] TEXT NOT NULL UNIQUE)
+            [email] TEXT NOT NULL UNIQUE)
             ''')
 
 connect.commit()

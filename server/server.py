@@ -30,6 +30,7 @@ def handle_client(conn, addr):
             else:
                 print(f"[{addr}] {msg}")
                 result  = RequestHandler(msg)
+                conn.send(str(len(result)).encode(FORMAT))
                 for row in result:
                     conn.send(row.encode(FORMAT))
     conn.close()
