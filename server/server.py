@@ -32,7 +32,6 @@ def handle_client(conn, addr):
                 result  = RequestHandler(msg)
                 for row in result:
                     conn.send(row.encode(FORMAT))
-
     conn.close()
 
 
