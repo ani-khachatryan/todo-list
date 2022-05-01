@@ -1,4 +1,5 @@
 import socket
+#TODO:import interface
 
 HEADER = 64
 PORT = 5050
@@ -23,10 +24,22 @@ def send(msg):
     print(client.recv(2048).decode(FORMAT))
 
 while True:
-    clientMessage = input()
-    if clientMessage != DISCONNECT_MESSAGE:
+    if operation_type == "login":
+        clientMessage = str("OP_LOGIN " + username + " " + password)
         send(clientMessage)
-    else:
-        send("client Disconnected")
-        send(DISCONNECT_MESSAGE)
-        break
+    elif operation_type == "registr":
+        clientMessage = str("OP_NEWUSER " + name + " " + username + " " + password + " " + email)
+        send(clientMessage)
+    elif operation_type == "get tasks":
+        clientMessage = str("TASK_GET " + user_id + " " + date)
+        send(clientMessage)
+    elif operation_type == "add task":
+        clientMessage = str("TASK_ADD " + user_id + " " + description + " " + date)
+        send(clientMessage)
+    elif operation_type == "delete task":
+        clientMessage = str("TASK_DELETE " + task_id)
+        send(clientMessage)
+    #else:
+    #    send("client Disconnected")
+    #    send(DISCONNECT_MESSAGE)
+    #    break
