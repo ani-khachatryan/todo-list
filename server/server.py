@@ -29,10 +29,11 @@ def handle_client(conn, addr):
                 connected = False
             else:
                 print(f"[{addr}] {msg}")
-                result  = RequestHandler(msg)
-                conn.send(str(len(result)).encode(FORMAT))
-                for row in result:
-                    conn.send(row.encode(FORMAT))
+                lis  = RequestHandler(msg)
+                send_str = ""
+                for i in lis:
+                    send_str = send_str + i + " loremipsum "
+                conn.send(send_str.encode(FORMAT))
     conn.close()
 
 
