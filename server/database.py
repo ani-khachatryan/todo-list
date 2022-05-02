@@ -44,13 +44,18 @@ def RequestHandler(req):
     elif req[0] == "OP_LOGIN":
         '''req[1] username, req[2] password'''
         get_user = '''SELECT * from users WHERE "username" = ?'''
-        usr = [cursor.execute(get_user, (req[1], ))]
-        if len(usr) == 0:
+        cursor.execute(get_user, (req[1], ))
+        us = cursor.fetchall()
+        usr = []
+        for e in us:
+            usr.append(" ".join([str(val) for val in e]))
+        print(usr)
+        if len(usr) != 1:
             return ["Error: wrong username"]
-        elif usr[3] != req[2]: #(aka password)
+        elif usr[0].split()[3] != req[2]: #(aka password)
             return ["Error: wrong password"]
         else:
-            return usr
+            return usr[0].split()
     elif req[0] == "OP_NEWUSER":
         try:
             insert_query = '''INSERT INTO users
@@ -58,8 +63,11 @@ def RequestHandler(req):
             VALUES (?, ?, ?, ?)'''
             cursor.execute(insert_query, req[1:])
             connection.commit()
-        except sqlite3.Error as err:   
-           print(err)
+            print_db(cursor)
+            return ["OK"]
+        except sqlite3.Error as err:
+            print_db(cursor)
+            return [str(err)]
     else:
         print("Error: Unknown request")
         sys.exit()
