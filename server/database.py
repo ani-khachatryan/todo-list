@@ -21,10 +21,15 @@ def RequestHandler(req):
     cursor = connection.cursor()
     if req[0] == "TASK_GET":
         '''req[1] user_id, req[2] date'''
-        get_tasks = '''SELECT * FROM tasks WHERE "user_id" = ? "date" = ?'''
-        ans = list(cursor.execute(get_tasks, req[1:]))
-        # return ans to client or bot
-        return ans
+        get_tasks = '''SELECT * FROM tasks WHERE "user_id" = ? AND "date" = ?'''
+        cursor.execute(get_tasks, (req[1], req[2]))
+        all_tasks = cursor.fetchall()
+        return all_tasks
+    elif req[0] == "GET_USERS":
+        get_users = '''SELECT user_id, email FROM users'''
+        cursor.execute(get_users)
+        all_users = cursor.fetchall()
+        return all_users
     elif req[0] == "TASK_ADD":
         '''(unique task_id is generated) req[1] user_id, req[2] description, req[3] date'''
         add_task = '''INSERT INTO tasks
@@ -75,3 +80,12 @@ def RequestHandler(req):
     cursor.close()
     if connection:
         connection.close()
+
+#RequestHandler("OP_NEWUSER Hamlet Ham_2552 hamo matevosyanhamlet9@gmail.com")
+#RequestHandler("TASK_ADD 1 JAMKOCHYAN 2022-05-02")
+#RequestHandler("TASK_ADD 1 TIGRAN 2022-05-02")
+#RequestHandler("OP_NEWUSER Mher Mher_787898 mher mher.karagulyan@gmail.com")
+#RequestHandler("TASK_ADD 2 NERSIK 2022-05-02")
+#RequestHandler("TASK_ADD 2 ISPIRYAN 2022-05-02")
+#print (RequestHandler("TASK_GET 2 2022-05-02"))
+

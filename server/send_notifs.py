@@ -1,5 +1,6 @@
-from database.py import RequestHandler
+from database import RequestHandler
 import smtplib
+from datetime import datetime
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
@@ -11,7 +12,7 @@ def SendNotifications():
     email_smtp_server = "smtp.gmail.com"
     email_smtp_port = 587
 
-    email_recepients #OP_GETUSERS user_id, email
+    email_recepients = RequestHandler("GET_USERS")
     email_subject = "Tasks for today"
 
 
@@ -27,12 +28,17 @@ def SendNotifications():
         #print(f"Sending email to {recipient}")
         message = MIMEMultipart('alternative')
         message['From'] = email_sender_account
-        message['To'] = recipient
+        message['To'] = recipient[1]
         message['Subject'] = email_subject
-
-        email_body #= "\n".merge rows of list OP_GETTASKS(user_id)
+        sended_tasks = RequestHandler(f"TASK_GET {recipient[0]} {datetime.today().strftime('%Y-%m-%d')}")
+        send_list = []
+        numeration = 1
+        for task in sended_tasks:
+            send_list.append(f"{numeration}. {task[2]}")
+            numeration += 1
+        email_body = '\n'.join(send_list) #= "\n".merge rows of list OP_GETTASKS(user_id)
         message.attach(MIMEText(email_body, 'plain'))
         text = message.as_string()
-        server.sendmail(email_sender_account,recipient,text)
+        server.sendmail(email_sender_account,recipient[1],text)
 
     server.quit()
