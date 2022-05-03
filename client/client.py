@@ -9,7 +9,7 @@ DISCONNECT_MESSAGE = "exit"
 #s.connect(("8.8.8.8", 80))
 #SERVER = s.getsockname()[0]
 #s.close()
-SERVER = "192.168.1.121"
+SERVER = "192.168.1.122"
 ADDR = (SERVER, PORT)
 
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -24,7 +24,7 @@ def send(msg):
     send_length += b' ' * (HEADER - len(send_length))
     client.send(send_length)
     client.send(message)
-    result = client.recv(2048).decode(FORMAT).split(" loremipsum ")
+    return client.recv(2048).decode(FORMAT).split(" loremipsum ")
 
 def login(username, password):
     clientMessage = f'OP_LOGIN {username} {password}'

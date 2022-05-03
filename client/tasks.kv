@@ -1,4 +1,42 @@
 #:kivy 2.0
 
-<TaskScreen>
-    ListView:
+<Boxk>:
+    size_hint: 1, 0.1
+    pos_hint: {'top': 1}
+    orientation: 'horizontal'
+    padding: 10
+    spacing: 50
+    Label:
+        size_hint : 2, 1
+        text: 'TASKS'		
+    Button:
+        size_hint: 0.3, 1
+        text: '+'
+        on_release:
+            self.add_task()
+    Button:
+        size_hint: 0.5, 1
+        text: 'BACK'
+        on_release:
+            app.root.current = 'login'
+
+<TaskButton>:
+    on_release:
+        self.press()
+
+<Tasks>:
+    viewclass: 'TaskButton'
+    RecycleBoxLayout:
+        default_size: None, dp(56)
+        default_size_hint: 0.6, None
+        size_hint_y: None
+        height: self.minimum_height
+        orientation: 'vertical'
+
+<TasksScreen>
+    FloatLayout:
+        padding: 10
+        spacing: 10
+        Boxk:
+        Tasks:
+            pos: 0, -100
