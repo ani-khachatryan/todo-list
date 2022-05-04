@@ -19,6 +19,8 @@ def RequestHandler(req):
     path = os.path.abspath("database.db")
     connection = Connect(path)
     cursor = connection.cursor()
+ #   print_db(cursor)
+ #   print()
     if req[0] == "TASK_GET":
         '''req[1] user_id, req[2] date'''
         get_tasks = '''SELECT * FROM tasks WHERE "user_id" = ? AND "date" = ?'''
@@ -87,7 +89,7 @@ def RequestHandler(req):
 #RequestHandler("TASK_ADD 1 JAMKOCHYAN TIGRAN TIGRAN JAMKOCHYAN 2022-05-04")
 #RequestHandler("TASK_ADD 1 FINISH PROJECT 2022-05-04")
 #RequestHandler("OP_NEWUSER Mher Mher_787898 mher mher.karagulyan@gmail.com")
-#RequestHandler("TASK_ADD 2 TODAY 22:00 MANCHESTER-UNITED VS REAL MADRID 2022-05-04")
+#RequestHandler("TASK_ADD 2 TODAY 22:00 MANCHESTER CITY VS REAL MADRID 2022-05-04")
 #RequestHandler("TASK_ADD 2 FINISH PROJECT 2022-05-04")
 #print (RequestHandler("TASK_GET 2 2022-05-04"))
 
