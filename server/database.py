@@ -31,11 +31,13 @@ def RequestHandler(req):
         all_users = cursor.fetchall()
         return all_users
     elif req[0] == "TASK_ADD":
+        date = req[-1]
+        merged_description = " ".join(req[2:(len(req) - 1)])
         '''(unique task_id is generated) req[1] user_id, req[2] description, req[3] date'''
         add_task = '''INSERT INTO tasks
         (user_id, description, date)
         VALUES (?, ?, ?)'''
-        cursor.execute(add_task, req[1:])
+        cursor.execute(add_task, (req[1], merged_description, date))
         connection.commit()
         # TODO update tasks in clients page
         return ["New task added"]
@@ -82,10 +84,10 @@ def RequestHandler(req):
         connection.close()
 
 #RequestHandler("OP_NEWUSER Hamlet Ham_2552 hamo matevosyanhamlet9@gmail.com")
-#RequestHandler("TASK_ADD 1 JAMKOCHYAN 2022-05-02")
-#RequestHandler("TASK_ADD 1 TIGRAN 2022-05-02")
+#RequestHandler("TASK_ADD 1 JAMKOCHYAN TIGRAN TIGRAN JAMKOCHYAN 2022-05-04")
+#RequestHandler("TASK_ADD 1 FINISH PROJECT 2022-05-04")
 #RequestHandler("OP_NEWUSER Mher Mher_787898 mher mher.karagulyan@gmail.com")
-#RequestHandler("TASK_ADD 2 NERSIK 2022-05-02")
-#RequestHandler("TASK_ADD 2 ISPIRYAN 2022-05-02")
-#print (RequestHandler("TASK_GET 2 2022-05-02"))
+#RequestHandler("TASK_ADD 2 TODAY 22:00 MANCHESTER-UNITED VS REAL MADRID 2022-05-04")
+#RequestHandler("TASK_ADD 2 FINISH PROJECT 2022-05-04")
+#print (RequestHandler("TASK_GET 2 2022-05-04"))
 

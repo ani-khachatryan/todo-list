@@ -43,8 +43,8 @@ def check_and_send():
     while True:
         now = datetime.now()
         current_time = now.strftime("%H:%M:%S")
-        start = '23:47:00'
-        end = '23:47:04'
+        start = '19:56:00'
+        end = '19:56:04'
         if current_time > start and current_time < end:
             print ("Sending...")
             SendNotifications()
