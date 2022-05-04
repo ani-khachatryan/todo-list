@@ -1,9 +1,5 @@
 from kivy.app import App
-from kivy.uix.widget import Widget
-from kivy.properties import ObjectProperty
-from kivy.uix.screenmanager import ScreenManager, SlideTransition
-#from kivy.uix.popup import Popup     #todo
-#from kivy.uix.floatlayout import FloatLayout
+from kivy.uix.screenmanager import ScreenManager
 from kivy.app import App
 #from kivy.uix.listview import ListItemButton
 

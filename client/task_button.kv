@@ -1,0 +1,31 @@
+#:kivy 2.0
+
+<RemoveAndCompleteButton@Button>:
+    BoxLayout:
+        orientation: 'horizontal'
+        Button:
+            text: 'X'
+        Button:
+            text: '•'
+
+
+<TaskPopup>:
+    size_hint: 0.6, 0.6
+    auto_dismiss: True
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: f'Task name, I hope... \n{root.caller.text}' 
+        Button:
+            pos_hint: {'center_x' : 0.5}
+            size_hint: 0.2, 0.2
+            text: '()()'
+            on_press: print(root.caller.aa)
+        Button:
+            pos_hint: {'center_x' : 0.5}
+            size_hint: 0.2, 0.2
+            text: 'CLOSE'
+            on_press: root.dismiss()
+
+<TaskButton>:
+    on_release: self.press()

@@ -1,22 +1,26 @@
-from kivy.uix.screenmanager import Screen, SlideTransition
+from kivy.uix.screenmanager import Screen
 from kivy.uix.recycleview import RecycleView
-from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.button import Button
+from kivy.uix.popup import Popup
+from kivy.properties import ObjectProperty
 from kivy.lang import Builder
 
-Builder.load_file('tasks.kv')
-
-class Boxk(BoxLayout):
-    pass
 
 class TasksScreen(Screen):
-    pass
+    Builder.load_file('tasks.kv')
+    def back(self):
+        self.manager.current = 'login'
+        self.manager.transition.direction = 'right'
 
-class TaskButton(Button):
-    def press(self):
-        print(self.aa)
+class AddTaskPopup(Popup):
+    Builder.load_file('add_task_popup.kv')
+    description = ObjectProperty()
+    name = ObjectProperty()
+    def add_task(self):
+        #addTaskToServer #TODO
+        print(self.name.text)
+        self.dismiss()
 
-class Tasks(RecycleView):
+class TaskList(RecycleView):
     #Tasks = client.get_tasks()
     def __init__(self, **kwargs):
         super().__init__(**kwargs)

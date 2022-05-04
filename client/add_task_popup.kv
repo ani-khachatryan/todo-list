@@ -1,0 +1,39 @@
+#:kivy 2.0
+
+<AddTaskPopup>:
+    name: name
+    description: description
+    auto_dismiss: True
+    size_hint: 0.6, 0.6
+    title: 'Adding Task'
+    BoxLayout:
+        orientation: 'vertical'
+        BoxLayout:
+            size_hint: 0.9, 1
+            orientation: 'horizontal'
+            Label:
+                text : "Name: "
+                size_hint : 0.2, 0.4
+                pos_hint : {"x" : 0.2, "top" : 0.8}
+            TextInput:
+                id : name
+                multiline :False
+                size_hint : 0.5, 0.6
+                pos_hint : {"x" : 0.45, "top" : 0.9}
+        BoxLayout:
+            size_hint: 0.9, 1
+            orientation: 'horizontal'
+            Label:
+                text : "Description: "
+                size_hint : 0.2, 0.4
+                pos_hint : {"x" : 0.2, "top" : 0.8}
+            TextInput:
+                id : description
+                multiline :False
+                size_hint : 0.5, 0.6
+                pos_hint : {"x" : 0.45, "top" : 0.9}
+        Button:
+            pos_hint : {"center_x" : 0.5, "top" : 0.8}
+            size_hint: 0.3, 0.3
+            text: 'Confirm'
+            on_press: root.add_task()

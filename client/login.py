@@ -16,4 +16,5 @@ class LoginWindow(Screen):
         else:
             #login
             self.manager.current = 'tasks'
+            self.manager.transition.direction = 'left'
         print(self.user)
