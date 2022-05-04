@@ -12,3 +12,6 @@ class TaskButton(Button):
     def press(self):
         pop = TaskPopup(self)
         pop.open()
+    def delete(self):
+        pass
+        #self.caller.data.append

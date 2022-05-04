@@ -1,14 +1,5 @@
 #:kivy 2.0
 
-<RemoveAndCompleteButton@Button>:
-    BoxLayout:
-        orientation: 'horizontal'
-        Button:
-            text: 'X'
-        Button:
-            text: '•'
-
-
 <TaskPopup>:
     size_hint: 0.6, 0.6
     auto_dismiss: True
@@ -19,8 +10,8 @@
         Button:
             pos_hint: {'center_x' : 0.5}
             size_hint: 0.2, 0.2
-            text: '()()'
-            on_press: print(root.caller.aa)
+            text: 'Delete'
+            on_press: root.caller.delete()
         Button:
             pos_hint: {'center_x' : 0.5}
             size_hint: 0.2, 0.2

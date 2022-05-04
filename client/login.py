@@ -1,4 +1,4 @@
-from kivy.uix.screenmanager import Screen, SlideTransition
+from kivy.uix.screenmanager import Screen
 from kivy.properties import ObjectProperty
 from kivy.lang import Builder
 from client import login
@@ -9,12 +9,13 @@ class LoginWindow(Screen):
     username = ObjectProperty(None)
     password = ObjectProperty(None)
     def validate(self):
-        self.user = login(self.username.text, self.password.text)
-        if len(self.user) == 1:
-            pass
+        pass
+        #self.user = login(self.username.text, self.password.text)
+        #if len(self.user) == 1:
+        #    pass
             #invalid login
-        else:
+        #else:
             #login
-            self.manager.current = 'tasks'
-            self.manager.transition.direction = 'left'
-        print(self.user)
+        #    self.manager.current = 'tasks'
+        #    self.manager.transition.direction = 'left'
+        #print(self.user)
