@@ -41,15 +41,17 @@ def RequestHandler(req):
         VALUES (?, ?, ?)'''
         cursor.execute(add_task, (req[1], merged_description, date))
         connection.commit()
-        # TODO update tasks in clients page
-        return ["New task added"]
+        # update tasks in clients page
+        cursor.execute('''SELECT * FROM tasks WHERE task_id=(SELECT max(task_id) FROM tasks)''')
+        task = cursor.fetchone()
+        return task[0]
+
     elif req[0] == "TASK_DELETE":
         '''req[1] task_id'''
         delete_task = '''DELETE from tasks WHERE "task_id" = ?'''
         cursor.execute(delete_task, (req[1], ))
         connection.commit()
-        # TODO update tasks in clients page
-        return ["Deleted task"]
+        return
     elif req[0] == "OP_LOGIN":
         '''req[1] username, req[2] password'''
         get_user = '''SELECT * from users WHERE "username" = ?'''
@@ -80,7 +82,7 @@ def RequestHandler(req):
     else:
         print("Error: Unknown request")
         sys.exit()
-    print_db(cursor)
+ #   print_db(cursor)
     cursor.close()
     if connection:
         connection.close()
