@@ -1,6 +1,7 @@
 from kivy.uix.button import Button
 from kivy.uix.popup import Popup
 from kivy.lang import Builder
+from client import User
 
 class TaskPopup(Popup):
     def __init__(self, caller, **kwargs):
@@ -13,5 +14,5 @@ class TaskButton(Button):
         pop = TaskPopup(self)
         pop.open()
     def delete(self):
-        pass
-        #self.caller.data.append
+        User.delete_task(self.id)
+        self.caller.data = [task for task in self.caller.data if task[id] != self.id]

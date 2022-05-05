@@ -6,32 +6,41 @@
     password : password
     FloatLayout:
         Label:
-            text : "USERNAME: "
+            text : "NAME: "
             size_hint : 0.2, 0.1
             pos_hint : {"x" : 0.25, "top" : 0.9}
         TextInput:
-            id : username
+            id : name
             multiline : False
             size_hint : 0.3, 0.1
             pos_hint : {"x" : 0.45, "top" : 0.9}
         Label:
+            text : "USERNAME: "
+            size_hint : 0.2, 0.1
+            pos_hint : {"x" : 0.25, "top" : 0.75}
+        TextInput:
+            id : username
+            multiline : False
+            size_hint : 0.3, 0.1
+            pos_hint : {"x" : 0.45, "top" : 0.75}
+        Label:
             text : "EMAIL: "
             size_hint : 0.2, 0.1
-            pos_hint : {"x" : 0.25, "top" : 0.7}
+            pos_hint : {"x" : 0.25, "top" : 0.6}
         TextInput:
             id : email
             multiline : False
             size_hint : 0.3, 0.1
-            pos_hint : {"x" : 0.45, "top" : 0.7}
+            pos_hint : {"x" : 0.45, "top" : 0.6}
         Label:
             text : "PASSWORD: "
             size_hint : 0.2, 0.1
-            pos_hint : {"x" : 0.25, "top" : 0.5}
+            pos_hint : {"x" : 0.25, "top" : 0.45}
         TextInput:
             id : password
             multiline : False
             size_hint : 0.3, 0.1
-            pos_hint : {"x" : 0.45, "top" : 0.5}
+            pos_hint : {"x" : 0.45, "top" : 0.45}
         Button:
             text : "SUBMIT"
             size_hint : 0.3, 0.1
