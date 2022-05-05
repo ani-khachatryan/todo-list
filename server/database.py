@@ -44,14 +44,14 @@ def RequestHandler(req):
         # update tasks in clients page
         cursor.execute('''SELECT * FROM tasks WHERE task_id=(SELECT max(task_id) FROM tasks)''')
         task = cursor.fetchone()
-        return task[0]
+        return [task[0]]
 
     elif req[0] == "TASK_DELETE":
         '''req[1] task_id'''
         delete_task = '''DELETE from tasks WHERE "task_id" = ?'''
         cursor.execute(delete_task, (req[1], ))
         connection.commit()
-        return
+        return []
     elif req[0] == "OP_LOGIN":
         '''req[1] username, req[2] password'''
         get_user = '''SELECT * from users WHERE "username" = ?'''
@@ -60,7 +60,7 @@ def RequestHandler(req):
         usr = []
         for e in us:
             usr.append(" ".join([str(val) for val in e]))
-        print(usr)
+        #print(usr) 
         if len(usr) != 1:
             return ["Error: wrong username"]
         elif usr[0].split()[3] != req[2]: #(aka password)
