@@ -17,9 +17,12 @@ python3 server.py
 ```  
   
 On client:  
+  
+```python3
 cd abs_path_to/client  
 python3 main.py  
-  
+```
+
 Enjoy!  
 
 # Supported functionality
