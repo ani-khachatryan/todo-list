@@ -31,14 +31,15 @@ def SendNotifications():
         message['To'] = recipient[1]
         message['Subject'] = email_subject
         sended_tasks = RequestHandler(f"TASK_GET {recipient[0]} {datetime.today().strftime('%Y-%m-%d')}")
-        send_list = []
-        numeration = 1
-        for task in sended_tasks:
-            send_list.append(f"{numeration}. {task[2]}")
-            numeration += 1
-        email_body = '\n'.join(send_list) #= "\n".merge rows of list OP_GETTASKS(user_id)
-        message.attach(MIMEText(email_body, 'plain'))
-        text = message.as_string()
-        server.sendmail(email_sender_account,recipient[1],text)
+        if sended_tasks[0] != "No Tasks":
+            send_list = []
+            numeration = 1
+            for task in sended_tasks:
+                send_list.append(f"{numeration}. {task[2]}")
+                numeration += 1
+            email_body = '\n'.join(send_list) #= "\n".merge rows of list OP_GETTASKS(user_id)
+            message.attach(MIMEText(email_body, 'plain'))
+            text = message.as_string()
+            server.sendmail(email_sender_account,recipient[1],text)
 
     server.quit()

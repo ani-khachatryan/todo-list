@@ -35,7 +35,7 @@ def handle_client(conn, addr):
                 lis  = RequestHandler(msg)
                 send_str = ""
                 for i in lis:
-                    send_str = send_str +str(i) + " loremipsum "
+                    send_str = send_str + str(i) + " loremipsum "
                 conn.send(send_str.encode(FORMAT))       
     conn.close()
 

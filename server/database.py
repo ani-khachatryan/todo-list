@@ -26,7 +26,10 @@ def RequestHandler(req):
         get_tasks = '''SELECT * FROM tasks WHERE "user_id" = ? AND "date" = ?'''
         cursor.execute(get_tasks, (req[1], req[2]))
         all_tasks = cursor.fetchall()
-        return all_tasks
+        if len(all_tasks) != 0:
+            return all_tasks
+        else:
+            return ["No Tasks"]
     elif req[0] == "GET_USERS":
         get_users = '''SELECT user_id, email FROM users'''
         cursor.execute(get_users)
@@ -93,5 +96,5 @@ def RequestHandler(req):
 #RequestHandler("OP_NEWUSER Mher Mher_787898 mher mher.karagulyan@gmail.com")
 #RequestHandler("TASK_ADD 2 TODAY 22:00 MANCHESTER CITY VS REAL MADRID 2022-05-04")
 #RequestHandler("TASK_ADD 2 FINISH PROJECT 2022-05-04")
-#print (RequestHandler("TASK_GET 2 2022-05-04"))
+#print (RequestHandler("TASK_GET 2 2022-05-07"))
 
