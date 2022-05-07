@@ -9,10 +9,12 @@ techprog project (2nd sem)
 Download the server and client folders to host and user PCs recpectively.
 
 On server:  
+
+```python3
 cd abs_path_to/server  
 python3 create_db.py (only once)  
 python3 server.py  
-  
+```  
   
 On client:  
 cd abs_path_to/client  
