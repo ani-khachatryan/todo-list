@@ -54,7 +54,7 @@ def RequestHandler(req):
         delete_task = '''DELETE from tasks WHERE "task_id" = ?'''
         cursor.execute(delete_task, (req[1], ))
         connection.commit()
-        return []
+        return ["Task Deleted"]
     elif req[0] == "OP_LOGIN":
         '''req[1] username, req[2] password'''
         get_user = '''SELECT * from users WHERE "username" = ?'''
@@ -94,7 +94,8 @@ def RequestHandler(req):
 #RequestHandler("TASK_ADD 1 JAMKOCHYAN TIGRAN TIGRAN JAMKOCHYAN 2022-05-04")
 #RequestHandler("TASK_ADD 1 FINISH PROJECT 2022-05-04")
 #RequestHandler("OP_NEWUSER Mher Mher_787898 mher mher.karagulyan@gmail.com")
-#RequestHandler("TASK_ADD 2 TODAY 22:00 MANCHESTER CITY VS REAL MADRID 2022-05-04")
-#RequestHandler("TASK_ADD 2 FINISH PROJECT 2022-05-04")
+#RequestHandler("TASK_ADD 2 TODAY 22:00 MANCHESTER CITY VS REAL MADRID 2022-05-07")
+#RequestHandler("TASK_ADD 2 FINISH PROJECT 2022-05-07")
+#RequestHandler("TASK_DELETE 4")
 #print (RequestHandler("TASK_GET 2 2022-05-07"))
 
