@@ -7,16 +7,16 @@ from kivy.uix.popup import Popup
 
 class RegistrationWindow(Screen):
     Builder.load_file('registration.kv')
-    name = ObjectProperty(None)
+    name_ = ObjectProperty(None)
     username = ObjectProperty(None)
     email = ObjectProperty(None)
     password = ObjectProperty(None)
 
     def signupbtn(self):
-        if registration(self.name.text, 
+        if registration(self.name_.text, 
                                  self.username.text,
                                  self.password.text, 
-                                 self.email.text):
+                                 self.email.text) is True:
             self.manager.current = 'login'
         else:
             Popup(title = 'Invalid Registration', size_hint = (0.4, 0.3)).open()

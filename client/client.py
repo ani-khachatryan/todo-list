@@ -28,10 +28,9 @@ def send(msg):
 
 def login(username, password):
     clientMessage = f'OP_LOGIN {username} {password}'
-    #User.id = 
     result = send(clientMessage)
-    if len(result) == 1:
-        return result[0]
+    if result[0].startswith("Error"):
+        return False
     else:
         User.id = result[0]
         return True
@@ -45,18 +44,28 @@ def registration(name, username, password, email):
         return False
 
 class User:
-    def get_tasks(self, date = datetime.today().strftime('%Y-%m-%d')):
-        clientMessage = f"TASK_GET {self.id} {str(date)}"
+    def get_tasks(date = datetime.today().strftime('%Y-%m-%d')):
+        clientMessage = f"TASK_GET {User.id} {str(date)}"
+        tasks = send(clientMessage)
+        if tasks[0] == "No Tasks":
+            return []
+        tasks = tasks[:-1]
+        for i in range(len(tasks)):
+            tasks[i] = tasks[i][1:-1]
+            tasks[i] = tasks[i].split(', ')
+            tasks[i][0] = int(tasks[i][0])
+            tasks[i][1] = int(tasks[i][1])
+            tasks[i][2] = tasks[i][2][1:-1]
+            tasks[i][3] = tasks[i][3][1:-1]
+        return tasks
+
+    def add_task(description, date):
+        clientMessage = f'TASK_ADD {User.id} {description} {str(date)}'
         return send(clientMessage)
 
-    def add_task(self, description, date):
-        clientMessage = f'TASK_ADD {self.id} {description} {str(date)}'
-        return send(clientMessage)
-
-    def delete_task(self, task_id):
+    def delete_task(task_id):
         clientMessage = f'TASK_DELETE {task_id}'
         send(clientMessage)
-        return
     #if:
     #    send("client Disconnected")
     #    send(DISCONNECT_MESSAGE)

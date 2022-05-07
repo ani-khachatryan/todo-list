@@ -1,7 +1,6 @@
 #:kivy 2.0
 #:import Factory kivy.factory.Factory
 #:import TaskButton task_button
-#:import AddTaskPopup add_task_popup
 
 <TaskList>:
     viewclass: 'TaskButton'
@@ -29,11 +28,14 @@
                 size_hint: 0.3, 1
                 text: '+'
                 on_release:
-                    Factory.AddTaskPopup().open()
+                    Factory.AddTaskPopup(root).open()
             Button:
                 size_hint: 0.5, 1
                 text: 'BACK'
                 on_release:
                     root.back()
-        TaskList:
+        ScrollView:
             pos: 10, -100
+            size_hint: 0.6, 1
+            MDList:
+                id: container

@@ -5,9 +5,9 @@ from kivymd.app import MDApp
 from kivy.core.window import Window
 Window.clearcolor = (1, 1, 1, 1)
 
-import login
-import registration
-import tasks_screen
+from login import LoginWindow
+from registration import RegistrationWindow
+from tasks_screen import TasksScreen
 import client
 
 class LoginApp(MDApp):
@@ -18,9 +18,12 @@ class LoginApp(MDApp):
 
         manager = ScreenManager()
 
-        manager.add_widget(login.LoginWindow(name='login'))
-        manager.add_widget(registration.RegistrationWindow(name='signup'))
-        manager.add_widget(tasks_screen.TasksScreen(name='tasks'))
+        self.login_window_instance = LoginWindow(name='login')
+        self.login_window_instance.app = self
+        manager.add_widget(self.login_window_instance)
+        manager.add_widget(RegistrationWindow(name='signup'))
+        self.task_screen_instance = TasksScreen(name='tasks')
+        manager.add_widget(self.task_screen_instance)
         return manager
 
 if __name__ == '__main__':
