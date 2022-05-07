@@ -8,26 +8,27 @@ techprog project (2nd sem)
 
 Download the server and client folders to host and user PCs recpectively.
 
-On server:
-cd abs_path_to/server
-python3 create_db.py (only once)
-python3 server.py
-
-
-On client:
-cd abs_path_to/client
-python3 main.py
-
-Enjoy!
+On server:  
+cd abs_path_to/server  
+python3 create_db.py (only once)  
+python3 server.py  
+  
+  
+On client:  
+cd abs_path_to/client  
+python3 main.py  
+  
+Enjoy!  
 
 # Supported functionality
-todo-list has GUI implemented for client side with pythons kivy module
-
-Supported operations are:
-Authorizing, registering, adding/deleting tasks, displaying tasks scheduled on a certain date.
-Also every day at 9 AM todo-list sends notification about that days tasks.
-
+todo-list has GUI implemented for client side with pythons kivy module  
+  
+Supported operations are:  
+Authorizing, registering, adding/deleting tasks, displaying tasks scheduled on a certain date.  
+Also every day at 9 AM todo-list sends notification about that days tasks.  
+  
 # Features and fixes that should be added in future
-Make server-client relations work not only on local network
-Server Deployment to a cloud
-Packing the app and making it easily downloadable and installable
+Make server-client relations work not only on local network  
+Server Deployment to a cloud  
+Packing the app and making it easily downloadable and installable  
+  
