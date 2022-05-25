@@ -1,0 +1,59 @@
+#:kivy 2.0
+
+<RegistrationWindow>:
+    name_ : name_
+    username : username
+    email : email
+    password : password
+    FloatLayout:
+        Label:
+            text : "NAME: "
+            size_hint : 0.2, 0.1
+            pos_hint : {"x" : 0.25, "top" : 0.9}
+        TextInput:
+            id : name_
+            multiline : False
+            size_hint : 0.3, 0.1
+            pos_hint : {"x" : 0.45, "top" : 0.9}
+        Label:
+            text : "USERNAME: "
+            size_hint : 0.2, 0.1
+            pos_hint : {"x" : 0.25, "top" : 0.75}
+        TextInput:
+            id : username
+            multiline : False
+            size_hint : 0.3, 0.1
+            pos_hint : {"x" : 0.45, "top" : 0.75}
+        Label:
+            text : "EMAIL: "
+            size_hint : 0.2, 0.1
+            pos_hint : {"x" : 0.25, "top" : 0.6}
+        TextInput:
+            id : email
+            multiline : False
+            size_hint : 0.3, 0.1
+            pos_hint : {"x" : 0.45, "top" : 0.6}
+        Label:
+            text : "PASSWORD: "
+            size_hint : 0.2, 0.1
+            pos_hint : {"x" : 0.25, "top" : 0.45}
+        TextInput:
+            id : password
+            multiline : False
+            size_hint : 0.3, 0.1
+            pos_hint : {"x" : 0.45, "top" : 0.45}
+        Button:
+            text : "SUBMIT"
+            size_hint : 0.3, 0.1
+            pos_hint : {"x" : 0.39, "top" : 0.30}
+            on_press :
+                root.signupbtn()
+                root.manager.transition.direction = "left"
+        Button:
+            text : "BACK"
+            size_hint : 0.3, 0.1
+            pos_hint : {"x" : 0.39, "top" : 0.15}
+            on_press :
+				app.root.current = 'login'
+                root.manager.transition.direction = "down"
+  

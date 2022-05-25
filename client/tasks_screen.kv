@@ -1,0 +1,41 @@
+#:kivy 2.0
+#:import Factory kivy.factory.Factory
+#:import TaskButton task_button
+
+<TaskList>:
+    viewclass: 'TaskButton'
+    RecycleBoxLayout:
+        default_size: None, dp(56)
+        default_size_hint: 0.6, None
+        size_hint_y: None
+        height: self.minimum_height
+        orientation: 'vertical'
+
+<TasksScreen>
+    FloatLayout:
+        padding: 10
+        spacing: 10        
+        BoxLayout:
+            size_hint: 1, 0.1
+            pos_hint: {'top': 1}
+            orientation: 'horizontal'
+            padding: 10
+            spacing: 50
+            Label:
+                size_hint : 2, 1
+                text: 'TASKS'		
+            Button:
+                size_hint: 0.3, 1
+                text: '+'
+                on_release:
+                    Factory.AddTaskPopup(root).open()
+            Button:
+                size_hint: 0.5, 1
+                text: 'BACK'
+                on_release:
+                    root.back()
+        ScrollView:
+            pos: 10, -100
+            size_hint: 0.6, 1
+            MDList:
+                id: container

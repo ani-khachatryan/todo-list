@@ -1,0 +1,38 @@
+#:kivy 2.0
+
+<LoginWindow>:
+	username : username
+	password : password
+	FloatLayout:
+		size: root.width, root.height
+		Label:
+			text : "USERNAME: "
+			size_hint : 0.2, 0.1
+			pos_hint : {"x":0.25, "top":0.9}
+		TextInput:
+			id : username
+			multiline :False
+			size_hint : 0.3, 0.1
+			pos_hint : {"x" : 0.45, "top" : 0.9}
+		Label:
+			text : "PASSWORD: "
+			size_hint : 0.2, 0.1
+			pos_hint : {"x" : 0.25, "top" : 0.7}
+		TextInput:
+			id : password
+			multiline :False
+			size_hint : 0.3, 0.1
+			pos_hint : {"x" : 0.45, "top" : 0.7}
+		Button:
+			text : "LOGIN"
+			size_hint : 0.3, 0.1
+			pos_hint : {"x" : 0.39, "top" : 0.2}
+			on_release:
+				root.validate()
+		Button:
+			text : "Create an account"
+			size_hint : 0.4, 0.1
+			pos_hint : {"x" : 0.33, "top" : 0.4}
+			on_release:
+				app.root.current = 'signup'
+				root.manager.transition.direction = "up"
